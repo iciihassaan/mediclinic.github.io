@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mediclinic — Our Clinic Gallery</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* === BLUE PALETTE (consistent with index) === */
+    :root {
+      --deepest: #021024;
+      --deep: #052659;
+      --mid: #5483B3;
+      --light-mid: #7DA0CA;
+      --pale: #C1E8FF;
+      --bg: #F2F7FD;
+      --white: #ffffff;
+      --text-dark: #021024;
+      --text-body: #1E2F41;
+      --text-light: #4A5C6E;
+      --shadow-sm: 0 6px 16px rgba(2, 16, 36, 0.05);
+      --shadow-md: 0 12px 32px rgba(2, 16, 36, 0.08);
+      --shadow-lg: 0 24px 60px rgba(2, 16, 36, 0.12);
+      --radius: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--deepest);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      max-width: 1200px;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--pale); }
+    ::-webkit-scrollbar-thumb { background: var(--mid); border-radius: 20px; }
+
+    /* === NAVIGATION === */
+    .navbar {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      border-bottom: 1px solid rgba(84, 131, 179, 0.15);
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+    }
+
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { height: 45px; width: auto; object-fit: contain; }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .menu li a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--deepest);
+      transition: color 0.25s;
+    }
+
+    .menu li a:hover { color: var(--mid); }
+
+    .nav-cta {
+      background: var(--deepest);
+      color: var(--white) !important;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: background 0.25s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .nav-cta:hover {
+      background: var(--deep);
+      transform: translateY(-2px);
+      color: var(--white) !important;
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 1.4rem;
+      color: var(--deepest);
+      cursor: pointer;
+    }
+
+    /* === PAGE HERO === */
+    .page-hero {
+      background: linear-gradient(145deg, var(--pale) 0%, var(--bg) 100%);
+      padding: 70px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(84, 131, 179, 0.12), transparent 70%);
+      top: -220px;
+      right: -120px;
+      pointer-events: none;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(193, 232, 255, 0.5), transparent 70%);
+      bottom: -180px;
+      left: -100px;
+      pointer-events: none;
+    }
+
+    .page-hero .container { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(4px);
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--deep);
+      margin-bottom: 22px;
+      border: 1px solid rgba(84, 131, 179, 0.18);
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+      line-height: 1.15;
+      max-width: 780px;
+      margin: 0 auto 16px;
+    }
+
+    .page-hero h1 em {
+      font-style: italic;
+      color: var(--mid);
+      font-weight: 500;
+    }
+
+    .page-hero p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: var(--text-light);
+      font-size: 1.05rem;
+    }
+
+    /* === GALLERY SECTION === */
+    .gallery-section {
+      padding: 60px 0 90px;
+      position: relative;
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 48px;
+      padding: 8px;
+      background: var(--white);
+      border-radius: 50px;
+      box-shadow: var(--shadow-sm);
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid rgba(84, 131, 179, 0.1);
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-light);
+      padding: 10px 22px;
+      border-radius: 40px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+
+    .filter-btn i { font-size: 0.8rem; opacity: 0.7; }
+
+    .filter-btn:hover {
+      color: var(--deep);
+      background: rgba(193, 232, 255, 0.4);
+    }
+
+    .filter-btn.active {
+      background: var(--deepest);
+      color: var(--white);
+      box-shadow: 0 6px 16px rgba(2, 16, 36, 0.2);
+    }
+
+    .filter-btn.active i { opacity: 1; }
+
+    /* Gallery grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      grid-auto-rows: 220px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s, opacity 0.4s;
+      background: var(--light-mid);
+      animation: fadeInUp 0.5s ease both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      z-index: 2;
+    }
+
+    /* Span modifiers for a dynamic masonry-like layout */
+    .gallery-item.span-2x2 { grid-column: span 2; grid-row: span 2; }
+    .gallery-item.span-2x1 { grid-column: span 2; }
+    .gallery-item.span-1x2 { grid-row: span 2; }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .gallery-item:hover img { transform: scale(1.08); }
+
+    /* Placeholder visuals */
+    .gallery-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      color: var(--white);
+      background: linear-gradient(145deg, var(--mid), var(--deep));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(193, 232, 255, 0.25), transparent 60%);
+    }
+
+    .gallery-placeholder i {
+      font-size: 2.6rem;
+      opacity: 0.95;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery-placeholder span {
+      font-size: 0.92rem;
+      font-weight: 500;
+      opacity: 0.92;
+      letter-spacing: 0.3px;
+      position: relative;
+      z-index: 1;
+      padding: 0 16px;
+      text-align: center;
+    }
+
+    /* Overlay */
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(2, 16, 36, 0.9) 0%, rgba(2, 16, 36, 0.15) 55%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 22px;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      z-index: 2;
+    }
+
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-overlay h3 {
+      color: var(--white);
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+      transform: translateY(8px);
+      transition: transform 0.35s ease;
+    }
+
+    .gallery-overlay .cat-tag {
+      display: inline-block;
+      color: var(--pale);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      transform: translateY(8px);
+      transition: transform 0.35s ease 0.05s;
+    }
+
+    .gallery-item:hover .gallery-overlay h3,
+    .gallery-item:hover .gallery-overlay .cat-tag {
+      transform: translateY(0);
+    }
+
+    .gallery-overlay .expand-icon {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      opacity: 0;
+      transform: scale(0.8) rotate(-30deg);
+      transition: opacity 0.35s, transform 0.35s;
+    }
+
+    .gallery-item:hover .gallery-overlay .expand-icon {
+      opacity: 1;
+      transform: scale(1) rotate(0);
+    }
+
+    /* Empty state */
+    .gallery-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-light);
+    }
+
+    .gallery-empty i {
+      font-size: 2.6rem;
+      color: var(--light-mid);
+      margin-bottom: 14px;
+    }
+
+    /* === LIGHTBOX === */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 16, 36, 0.94);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+
+    .lightbox.open { opacity: 1; visibility: visible; }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 960px;
+      width: 100%;
+      max-height: 86vh;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+      background: var(--deep);
+      transform: scale(0.94);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .lightbox.open .lightbox-content { transform: scale(1); }
+
+    .lb-image-wrap {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, var(--mid), var(--deep));
+    }
+
+    .lb-image-wrap img {
+      width: 100%;
+      height: auto;
+      max-height: 72vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lightbox-placeholder {
+      width: 100%;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      color: var(--white);
+      background: linear-gradient(145deg, var(--mid), var(--deep));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lightbox-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(193, 232, 255, 0.22), transparent 60%);
+    }
+
+    .lightbox-placeholder i { font-size: 4.5rem; opacity: 0.9; position: relative; z-index: 1; }
+    .lightbox-placeholder span { font-size: 1.05rem; opacity: 0.9; position: relative; z-index: 1; }
+
+    .lightbox-caption {
+      padding: 20px 26px;
+      background: var(--deepest);
+      color: var(--white);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-top: 1px solid rgba(193, 232, 255, 0.1);
+    }
+
+    .lightbox-caption h3 { color: var(--white); font-size: 1.15rem; margin: 0; }
+
+    .lightbox-caption .lb-counter {
+      color: var(--light-mid);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(6px);
+      color: var(--white);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s, transform 0.3s;
+      z-index: 10;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.28);
+      transform: rotate(90deg);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(6px);
+      color: var(--white);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s, transform 0.2s;
+      z-index: 10;
+    }
+
+    .lightbox-nav:hover { background: rgba(255, 255, 255, 0.28); }
+    .lightbox-nav:active { transform: translateY(-50%) scale(0.92); }
+
+    .lightbox-prev { left: 18px; }
+    .lightbox-next { right: 18px; }
+
+    /* === CTA === */
+    .cta-gallery {
+      padding: 70px 0;
+      background: var(--white);
+    }
+
+    .cta-card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: linear-gradient(145deg, var(--pale), var(--bg));
+      border-radius: 24px;
+      padding: 54px 44px;
+      text-align: center;
+      border: 1px solid rgba(84, 131, 179, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(84, 131, 179, 0.1), transparent 70%);
+      top: -140px;
+      right: -80px;
+      pointer-events: none;
+    }
+
+    .cta-card h2 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .cta-card p {
+      color: var(--text-light);
+      max-width: 520px;
+      margin: 0 auto 26px;
+      position: relative;
+    }
+
+    .btn-primary {
+      background: var(--deepest);
+      color: var(--white);
+      padding: 14px 30px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.25s, transform 0.2s;
+      box-shadow: 0 10px 24px rgba(2, 16, 36, 0.18);
+      border: none;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .btn-primary:hover { background: var(--deep); transform: translateY(-3px); }
+
+    /* === FOOTER === */
+    footer {
+      background: var(--deepest);
+      color: var(--pale);
+      padding: 60px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr 1fr 1.1fr;
+      gap: 40px;
+      padding-bottom: 44px;
+    }
+
+    .footer-brand .logo { margin-bottom: 14px; }
+
+    .footer-brand .logo img {
+      height: 50px;
+      width: auto;
+      object-fit: contain;
+      background-color: var(--white);
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+
+    .footer-brand p {
+      color: var(--light-mid);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .footer-social { display: flex; gap: 12px; }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(193, 232, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--pale);
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .footer-social a:hover { background: var(--mid); color: var(--white); }
+
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 1rem;
+      margin-bottom: 18px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+    }
+
+    .footer-col ul li { margin-bottom: 10px; }
+
+    .footer-col ul li a {
+      color: var(--light-mid);
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover { color: var(--pale); }
+
+    .footer-contact li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--light-mid);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    .footer-contact i { color: var(--mid); margin-top: 3px; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(193, 232, 255, 0.1);
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--light-mid);
+    }
+
+    /* === FLOATING WHATSAPP === */
+    .float-wa {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.6rem;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+      z-index: 998;
+      transition: transform 0.2s;
+    }
+
+    .float-wa:hover { transform: scale(1.06); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .gallery-item.span-2x2 { grid-column: span 2; grid-row: span 2; }
+      .gallery-item.span-2x1 { grid-column: span 2; }
+      .gallery-item.span-1x2 { grid-row: span 2; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 78%;
+        height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        justify-content: center;
+        gap: 24px;
+        transition: left 0.35s;
+        box-shadow: 12px 0 30px rgba(0,0,0,0.08);
+        z-index: 1000;
+      }
+      .menu.active { left: 0; }
+      .menu-icon { display: block; z-index: 1001; }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 180px;
+        gap: 14px;
+      }
+      .gallery-item.span-2x2 { grid-column: span 2; grid-row: span 2; }
+      .gallery-item.span-2x1 { grid-column: span 2; }
+      .gallery-item.span-1x2 { grid-row: span 2; }
+
+      .filter-bar { border-radius: 20px; padding: 6px; gap: 4px; }
+      .filter-btn { padding: 8px 14px; font-size: 0.8rem; }
+      .filter-btn i { display: none; }
+
+      .footer-grid { grid-template-columns: 1fr; }
+      .cta-card { padding: 40px 24px; }
+      .lightbox { padding: 14px; }
+      .lightbox-nav { width: 40px; height: 40px; font-size: 0.85rem; }
+      .lightbox-prev { left: 10px; }
+      .lightbox-next { right: 10px; }
+      .lightbox-caption { padding: 16px 18px; }
+      .lightbox-caption h3 { font-size: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+      .gallery-item.span-2x2,
+      .gallery-item.span-2x1,
+      .gallery-item.span-1x2 {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+    }
+  </style>
+<link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar">
+  <div class="container navigation">
+    <label class="menu-icon" id="menuToggle"><i class="fa-solid fa-bars"></i></label>
+
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="Mediclinic Logo">
+    </a>
+
+    <ul class="menu" id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="health-tips.html">Health Tips</a></li>
+      <li><a href="gallery.html" style="color: var(--mid); font-weight: 600;">Gallery</a></li>
+    </ul>
+    <a href="appointment.html" class="nav-cta">Book Appointment</a>
+  </div>
+</nav>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="container">
+    <div class="hero-badge"><i class="fa-solid fa-camera-retro"></i> A look inside our clinic</div>
+    <h1>Our Clinic, <em>Your Comfort</em></h1>
+    <p>Explore our modern facilities, caring team, and welcoming spaces — designed with your health and comfort in mind.</p>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section class="gallery-section">
+  <div class="container">
+    <!-- Filter bar -->
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i> All Photos</button>
+      <button class="filter-btn" data-filter="reception"><i class="fa-solid fa-couch"></i> Reception</button>
+      <button class="filter-btn" data-filter="consultation"><i class="fa-solid fa-stethoscope"></i> Consultation</button>
+      <button class="filter-btn" data-filter="facilities"><i class="fa-solid fa-microscope"></i> Facilities</button>
+      <button class="filter-btn" data-filter="team"><i class="fa-solid fa-user-doctor"></i> Our Team</button>
+    </div>
+
+    <!-- Gallery grid -->
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Item 1 — featured large -->
+      <div class="gallery-item span-2x2" data-category="reception" data-title="Welcoming Reception" data-subtitle="Reception">
+        <div class="gallery-placeholder">
+          <i class="fa-solid fa-couch"></i>
+          <span>Reception Area</span>
+        </div>
+        <div class="gallery-overlay">
+          <div class="expand-icon"><i class="fa-solid fa-expand"></i></div>
+          <h3>Welcoming Reception</h3>
+          <span class="cat-tag">Reception</span>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="gallery-item" data-category="consultation" data-title="General Consultation Room" data-subtitle="Consultation">
+        <div class="gallery-placeholder">
+          <i class="fa-solid fa-stethoscope"></i>
+          <span>Consultation Room</span>
+        </div>
+        <div class="gallery-overlay">
+          <div class="expand-icon"><i class="fa-solid fa-expand"></i></div>
+          <h3>General Consultation Room</h3>
+          <span class="cat-tag">Consultation</span>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="gallery-item" data-category="facilities" data-title="Modern Diagnostic Lab" data-subtitle="Facilities">
+        <div class="gallery-placeholder">
+          <i class="fa-solid fa-microscope"></i>
+          <span>Diagnostic Lab</span>
+        </div>
+        <div class="gallery-overlay">
+          <div class="expand-icon"><i class="fa-solid fa-expand"></i></div>
+          <h3>Modern Diagnostic Lab</h3>
+          <span class="cat-tag">Facilities</span>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="gallery-item" data-category="team" data-title="Our Caring Medical Team" data-subtitle="Our Team">
+        <div class="gallery-placeholder">
+          <i class="fa-solid fa-user-doctor"></i>
+          <span>Medical Team</span>
+        </div>
+        <div class="gallery-overlay">
+          <div class="expand-icon"><i class="fa-solid fa-expand"></i></div>
+          <h3>Our Caring Medical Team</h3>
+          <span class="cat-tag">Our Team</span>
+        </div>
+      </div>
+
+      <!-- Item 5 — wide -->
+      <div class="gallery-item span-2x1" data-category="facilities" data-title="Comfortable Waiting Lounge" data-subtitle="Facilities">
+        <div class="gallery-placeholder">
+          <i class="fa-solid fa-chair"></i>
+          <span>Waiting Lounge</span>
+        </div>
+        <div class="gallery-overlay">
+          <div class="expand-icon"><i class="fa-solid fa-expand"></i></div>
+          <h3>Comfortable Waiting Lounge</h3>
+          <span class="cat-tag">Facilities</span>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="gallery-item" data-category="consultation" data-title="Pediatric Care Room" data-subtitle="Consultation">
+        <div class="gallery-placeholder">
+          <i class="fa-solid fa-child"></i>
+          <span>Pediatric Room</span>
+        </div>
+        <div class="gallery-overlay">
+          <div class="expand-icon"><i class="fa-solid fa-expand"></i></div>
+          <h3>Pediatric Care Room</h3>
+          <span class="cat-tag">Consultation</span>
+        </div>
+      </div>
+
+      <!-- Item 7 -->
+      <div class="gallery-item" data-category="reception" data-title="Front Desk & Assistance" data-subtitle="Reception">
+        <div class="gallery-placeholder">
+          <i class="fa-solid fa-bell-concierge"></i>
+          <span>Front Desk</span>
+        </div>
+        <div class="gallery-overlay">
+          <div class="expand-icon"><i class="fa-solid fa-expand"></i></div>
+          <h3>Front Desk &amp; Assistance</h3>
+          <span class="cat-tag">Reception</span>
+        </div>
+      </div>
+
+      <!-- Item 8 — tall -->
+      <div class="gallery-item span-1x2" data-category="facilities" data-title="Pharmacy Counter" data-subtitle="Facilities">
+        <div class="gallery-placeholder">
+          <i class="fa-solid fa-pills"></i>
+          <span>Pharmacy</span>
+        </div>
+        <div class="gallery-overlay">
+          <div class="expand-icon"><i class="fa-solid fa-expand"></i></div>
+          <h3>Pharmacy Counter</h3>
+          <span class="cat-tag">Facilities</span>
+        </div>
+      </div>
+
+      <!-- Item 9 -->
+      <div class="gallery-item" data-category="team" data-title="Dr. Ayesha at Work" data-subtitle="Our Team">
+        <div class="gallery-placeholder">
+          <i class="fa-solid fa-user-nurse"></i>
+          <span>Dr. Ayesha</span>
+        </div>
+        <div class="gallery-overlay">
+          <div class="expand-icon"><i class="fa-solid fa-expand"></i></div>
+          <h3>Dr. Ayesha at Work</h3>
+          <span class="cat-tag">Our Team</span>
+        </div>
+      </div>
+
+      <!-- Item 10 -->
+      <div class="gallery-item" data-category="consultation" data-title="Cardiology Screening Room" data-subtitle="Consultation">
+        <div class="gallery-placeholder">
+          <i class="fa-solid fa-heart-pulse"></i>
+          <span>Cardiology Room</span>
+        </div>
+        <div class="gallery-overlay">
+          <div class="expand-icon"><i class="fa-solid fa-expand"></i></div>
+          <h3>Cardiology Screening Room</h3>
+          <span class="cat-tag">Consultation</span>
+        </div>
+      </div>
+
+      <!-- Item 11 -->
+      <div class="gallery-item" data-category="reception" data-title="Entrance &amp; Signage" data-subtitle="Reception">
+        <div class="gallery-placeholder">
+          <i class="fa-solid fa-door-open"></i>
+          <span>Clinic Entrance</span>
+        </div>
+        <div class="gallery-overlay">
+          <div class="expand-icon"><i class="fa-solid fa-expand"></i></div>
+          <h3>Entrance &amp; Signage</h3>
+          <span class="cat-tag">Reception</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="lb-image-wrap" id="lbImageWrap"></div>
+    <div class="lightbox-caption">
+      <h3 id="lbTitle">Gallery Image</h3>
+      <span class="lb-counter" id="lbCounter">1 / 1</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CTA ===== -->
+<section class="cta-gallery">
+  <div class="container">
+    <div class="cta-card">
+      <h2>Come see us in person</h2>
+      <p>Book a visit and experience our caring environment firsthand. We'd love to welcome you.</p>
+      <a href="appointment.html" class="btn-primary">Book an Appointment <i class="fa-solid fa-calendar-check"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Mediclinic Logo">
+      </a>
+      <p>Providing compassionate, expert medical care to families in our community and beyond.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="health-tips.html">Health Tips</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="appointment.html">Appointments</a></li>
+        <li><a href="patient-portal.html">Patient Portal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul class="footer-contact">
+        <li><i class="fa-solid fa-location-dot"></i> DHQ Hospital, Hafizabad, Pakistan</li>
+        <li><i class="fa-solid fa-phone"></i> <a href="tel:+923305516653" style="color: var(--light-mid);">+92 330 5516653</a></li>
+        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@mediclinic.com" style="color: var(--light-mid);">info@mediclinic.com</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Clinic Hours</h4>
+      <ul>
+        <li style="color: var(--light-mid); font-size: 0.9rem; margin-bottom: 8px;">Mon – Thu, Sat: 2:00 PM – 7:00 PM</li>
+        <li style="color: var(--light-mid); font-size: 0.9rem; margin-bottom: 8px;">Sunday: 10:00 AM – 6:00 PM</li>
+        <li style="color: var(--light-mid); font-size: 0.9rem;">Friday: Closed</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&#169; 2026 Mediclinic. All rights reserved.</span>
+    <span>Designed with care.</span>
+  </div>
+</footer>
+
+<!-- ===== FLOATING WHATSAPP ===== -->
+<a class="float-wa" href="https://wa.me/923305516653" target="_blank" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  // Mobile menu toggle
+  document.getElementById('menuToggle').addEventListener('click', function () {
+    document.getElementById('menu').classList.toggle('active');
+  });
+
+  // --- DOM refs ---
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const galleryGrid = document.getElementById('galleryGrid');
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+  const lbImageWrap = document.getElementById('lbImageWrap');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbCounter = document.getElementById('lbCounter');
+
+  let visibleItems = [];
+  let currentIndex = 0;
+  let lastFocusedElement = null;
+
+  // --- Filtering with animation ---
+  function applyFilter(filter) {
+    let visibleCount = 0;
+
+    galleryItems.forEach((item, idx) => {
+      const matches = filter === 'all' || item.dataset.category === filter;
+
+      if (matches) {
+        item.style.display = '';
+        item.style.animation = 'none';
+        // Force reflow to restart animation
+        void item.offsetWidth;
+        item.style.animation = `fadeInUp 0.45s ease ${visibleCount * 0.04}s both`;
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    // Show empty state if needed
+    let emptyEl = galleryGrid.querySelector('.gallery-empty');
+    if (visibleCount === 0) {
+      if (!emptyEl) {
+        emptyEl = document.createElement('div');
+        emptyEl.className = 'gallery-empty';
+        emptyEl.innerHTML = '<i class="fa-regular fa-image"></i><p>No photos in this category yet.</p>';
+        galleryGrid.appendChild(emptyEl);
+      }
+      emptyEl.style.display = '';
+    } else if (emptyEl) {
+      emptyEl.style.display = 'none';
+    }
+  }
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter(btn.dataset.filter);
+    });
+  });
+
+  // --- Lightbox ---
+  function getVisibleItems() {
+    return Array.from(galleryItems).filter(item => item.style.display !== 'none');
+  }
+
+  function renderLightbox(index) {
+    const item = visibleItems[index];
+    if (!item) return;
+
+    const title = item.dataset.title || 'Gallery Image';
+    const placeholderIcon = item.querySelector('.gallery-placeholder i');
+    const iconClass = placeholderIcon ? placeholderIcon.className : 'fa-solid fa-image';
+
+    lbImageWrap.innerHTML = `
+      <div class="lightbox-placeholder">
+        <i class="${iconClass}"></i>
+        <span>${title}</span>
+      </div>
+    `;
+
+    lbTitle.textContent = title;
+    lbCounter.textContent = `${index + 1} / ${visibleItems.length}`;
+
+    // Preload neighbours (if real images existed)
+    // (No-op with placeholders, but keeps structure ready)
+  }
+
+  function openLightbox(item) {
+    lastFocusedElement = document.activeElement;
+    visibleItems = getVisibleItems();
+    currentIndex = visibleItems.indexOf(item);
+    renderLightbox(currentIndex);
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lightboxClose.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocusedElement) lastFocusedElement.focus();
+  }
+
+  function showPrev() {
+    if (visibleItems.length === 0) return;
+    currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+    renderLightbox(currentIndex);
+  }
+
+  function showNext() {
+    if (visibleItems.length === 0) return;
+    currentIndex = (currentIndex + 1) % visibleItems.length;
+    renderLightbox(currentIndex);
+  }
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => openLightbox(item));
+    // Keyboard accessibility for gallery items
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(item);
+      }
+    });
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', showPrev);
+  lightboxNext.addEventListener('click', showNext);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  });
+
+  // Basic swipe support for lightbox
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  lightbox.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  lightbox.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) showNext();
+      else showPrev();
+    }
+  }, { passive: true });
+
+  // Initial animation on load
+  window.addEventListener('load', () => applyFilter('all'));
+</script>
+</body>
+</html>

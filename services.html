@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#021024">
+<meta name="description" content="Comprehensive medical care at Dr. Farooq Mediclinic. Expert management for diabetes, hypertension, gastrointestinal issues, infections, and more.">
+<title>Our Services — Dr. Farooq Mediclinic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* === BLUE PALETTE FROM IMAGE === */
+:root{
+  --deepest: #021024;
+  --deep: #052659;
+  --mid: #5483B3;
+  --light-mid: #7DA0CA;
+  --pale: #C1E8FF;
+  --bg: #F2F7FD;
+  --white: #ffffff;
+  --text-dark: #021024;
+  --text-body: #1E2F41;
+  --text-light: #4A5C6E;
+  --border: rgba(84, 131, 179, 0.2);
+  --shadow-sm: 0 6px 16px rgba(2, 16, 36, 0.05);
+  --shadow-md: 0 12px 32px rgba(2, 16, 36, 0.08);
+  --shadow-lg: 0 24px 48px rgba(2, 16, 36, 0.12);
+  --radius: 18px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--deepest); font-weight: 600; letter-spacing: -0.02em; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+body { background: var(--bg); color: var(--text-body); overflow-x: hidden; line-height: 1.6; }
+.container { max-width: 1200px; width: 90%; margin: 0 auto; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--pale); }
+::-webkit-scrollbar-thumb { background: var(--mid); border-radius: 20px; }
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-up { animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+
+/*==Navigation==*/
+.navbar { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 999; border-bottom: 1px solid rgba(84, 131, 179, 0.15); transition: all 0.3s ease; }
+.navigation { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; }
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo img { height: 45px; width: auto; object-fit: contain; transition: transform 0.3s ease; }
+.logo:hover img { transform: scale(1.02); }
+.menu { display: flex; align-items: center; gap: 32px; }
+.menu li a { font-weight: 500; font-size: 0.95rem; color: var(--deepest); transition: color 0.25s; position: relative; }
+.menu li a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--mid); transition: width 0.3s ease; }
+.menu li a:hover { color: var(--mid); }
+.menu li a:hover::after { width: 100%; }
+.nav-appointment-btn { background: var(--deepest); color: #fff; padding: 10px 24px; border-radius: 40px; font-weight: 600; font-size: 0.88rem; transition: all 0.25s; display: inline-block; box-shadow: 0 4px 12px rgba(2, 16, 36, 0.15); }
+.nav-appointment-btn:hover { background: var(--deep); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(2, 16, 36, 0.2); }
+.menu-icon { display: none; font-size: 1.4rem; color: var(--deepest); cursor: pointer; }
+
+/*==Services Hero==*/
+#services-hero {
+  background: linear-gradient(135deg, var(--pale) 0%, var(--bg) 100%);
+  padding: 80px 0 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#services-hero::before {
+  content: ''; position: absolute; top: -50px; right: -50px; width: 300px; height: 300px;
+  background: rgba(193, 232, 255, 0.5); border-radius: 50%; filter: blur(60px); z-index: 0;
+}
+#services-hero .container { position: relative; z-index: 1; }
+#services-hero h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); margin-bottom: 20px; }
+#services-hero p { max-width: 680px; margin: 0 auto; color: var(--text-light); font-size: 1.08rem; line-height: 1.7; }
+
+/*==Service Categories==*/
+#service-categories { padding: 90px 0; }
+.category-block { margin-bottom: 70px; }
+.category-block:last-child { margin-bottom: 0; }
+
+.category-heading { display: flex; align-items: center; gap: 24px; margin-bottom: 36px; }
+.category-heading h2 { font-size: clamp(1.6rem, 3vw, 2rem); white-space: nowrap; display: flex; align-items: center; gap: 12px; }
+.category-heading h2 i { color: var(--mid); font-size: 1.4rem; }
+.category-heading .cat-line { flex: 1; height: 1px; background: var(--border); }
+
+.service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+/* Individual Service Card */
+.svc-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 30px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+.svc-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+  background: var(--mid); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+}
+.svc-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: transparent; }
+.svc-card:hover::before { transform: scaleX(1); }
+
+.svc-icon {
+  width: 54px; height: 54px; border-radius: 14px; background: var(--pale); color: var(--deep);
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+.svc-card:hover .svc-icon { transform: scale(1.1) rotate(-5deg); }
+
+.svc-card h3 { font-size: 1.25rem; margin-bottom: 12px; color: var(--deepest); }
+.svc-card p { color: var(--text-light); font-size: 0.92rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
+
+/* Read More Link */
+.read-more-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.85rem; font-weight: 600; color: var(--mid);
+  margin-bottom: 16px; cursor: pointer; background: none; border: none;
+  padding: 0; font-family: 'Inter', sans-serif; transition: color 0.2s;
+}
+.read-more-link i { font-size: 0.7rem; transition: transform 0.2s ease; }
+.read-more-link:hover { color: var(--deep); }
+.read-more-link:hover i { transform: translateX(3px); }
+
+.btn-book-service {
+  display: inline-flex; align-items: center; justify-content: space-between;
+  background: var(--bg); color: var(--deep); padding: 14px 20px; border-radius: 12px;
+  font-weight: 600; font-size: 0.9rem; transition: all 0.25s; margin-top: auto; border: 1px solid transparent;
+}
+.btn-book-service i { font-size: 0.8rem; transition: transform 0.3s ease; }
+.btn-book-service:hover { background: var(--deepest); color: #fff; }
+.btn-book-service:hover i { transform: translateX(4px); }
+
+/*==Modal==*/
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(2, 16, 36, 0.55);
+  backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center;
+  z-index: 2000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 20px;
+}
+.modal-overlay.active { opacity: 1; visibility: visible; }
+
+.modal-box {
+  background: var(--white); border-radius: 22px; max-width: 680px; width: 100%;
+  max-height: 88vh; overflow-y: auto; box-shadow: var(--shadow-lg);
+  transform: translateY(24px) scale(0.98); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+.modal-overlay.active .modal-box { transform: translateY(0) scale(1); }
+
+.modal-header {
+  background: linear-gradient(135deg, var(--deep) 0%, var(--deepest) 100%);
+  padding: 32px 34px 26px; border-radius: 22px 22px 0 0; position: relative;
+}
+.modal-header .modal-icon {
+  width: 52px; height: 52px; border-radius: 14px; background: rgba(193, 232, 255, 0.15);
+  color: var(--pale); display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin-bottom: 16px;
+}
+.modal-header h3 { color: var(--white); font-size: 1.6rem; margin-bottom: 4px; }
+.modal-header p { color: var(--pale); font-size: 0.88rem; opacity: 0.85; }
+
+.modal-close {
+  position: absolute; top: 20px; right: 20px; width: 38px; height: 38px;
+  border-radius: 50%; background: rgba(255, 255, 255, 0.12); border: none;
+  color: var(--white); font-size: 1rem; cursor: pointer; display: flex;
+  align-items: center; justify-content: center; transition: background 0.2s;
+}
+.modal-close:hover { background: rgba(255, 255, 255, 0.25); }
+
+.modal-body { padding: 28px 34px 34px; }
+.modal-body h4 { font-size: 1.05rem; color: var(--deep); margin-bottom: 10px; margin-top: 22px; display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-weight: 600; }
+.modal-body h4:first-child { margin-top: 0; }
+.modal-body h4 i { color: var(--mid); font-size: 0.95rem; }
+.modal-body p { color: var(--text-light); font-size: 0.93rem; line-height: 1.7; margin-bottom: 6px; }
+.modal-body ul { margin: 6px 0 6px 0; padding-left: 0; }
+.modal-body ul li { color: var(--text-light); font-size: 0.93rem; line-height: 1.7; padding-left: 22px; position: relative; margin-bottom: 6px; }
+.modal-body ul li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--mid); font-size: 0.7rem; position: absolute; left: 0; top: 6px; }
+.modal-body .modal-cta {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 26px;
+  background: var(--deepest); color: #fff; padding: 14px 28px; border-radius: 40px;
+  font-weight: 600; font-size: 0.92rem; transition: all 0.25s;
+}
+.modal-body .modal-cta:hover { background: var(--deep); transform: translateY(-2px); }
+
+/*==CTA Section==*/
+.cta-strip { padding: 80px 0; background: var(--white); border-top: 1px solid var(--border); text-align: center; }
+.cta-strip h2 { font-size: 2rem; margin-bottom: 15px; }
+.cta-strip p { color: var(--text-light); margin-bottom: 30px; font-size: 1.05rem; }
+.btn-primary { background: var(--deepest); color: var(--white); padding: 16px 36px; border-radius: 40px; font-weight: 600; font-size: 1rem; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease; box-shadow: 0 10px 24px rgba(2, 16, 36, 0.18); border: none; cursor: pointer; }
+.btn-primary:hover { background: var(--deep); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(2, 16, 36, 0.25); }
+
+/*==Footer==*/
+footer { background: var(--deepest); color: var(--pale); padding: 60px 0 0; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 0.8fr 1fr 1.1fr; gap: 40px; padding-bottom: 44px; }
+.footer-brand .logo { margin-bottom: 14px; }
+.footer-brand .logo img { height: 50px; width: auto; object-fit: contain; background-color: var(--white); padding: 8px 12px; border-radius: 8px; }
+.footer-brand p { color: var(--light-mid); font-size: 0.9rem; line-height: 1.7; margin-bottom: 18px; }
+.footer-social { display: flex; gap: 12px; }
+.footer-social a { width: 36px; height: 36px; border-radius: 50%; background: rgba(193, 232, 255, 0.1); display: flex; align-items: center; justify-content: center; color: var(--pale); transition: background 0.25s, color 0.25s; }
+.footer-social a:hover { background: var(--mid); color: var(--white); }
+.footer-col h4 { color: var(--white); font-size: 1rem; margin-bottom: 18px; font-family: 'Inter', sans-serif; font-weight: 600; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { color: var(--light-mid); font-size: 0.9rem; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--pale); }
+.footer-contact li { display: flex; align-items: flex-start; gap: 10px; color: var(--light-mid); font-size: 0.9rem; margin-bottom: 14px; }
+.footer-contact i { color: var(--mid); margin-top: 3px; }
+.footer-bottom { border-top: 1px solid rgba(193, 232, 255, 0.1); padding: 20px 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 0.85rem; color: var(--light-mid); }
+
+/*==Floating WhatsApp==*/
+.float-wa { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.6rem; box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45); z-index: 998; transition: transform 0.2s; }
+.float-wa:hover { transform: scale(1.06); }
+
+/*==Responsive==*/
+@media (max-width: 1024px) {
+  .service-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .menu { position: fixed; top: 0; left: -100%; width: 78%; height: 100vh; background: var(--white); flex-direction: column; justify-content: center; gap: 24px; transition: left 0.35s; box-shadow: 12px 0 30px rgba(0,0,0,0.08); z-index: 1000; }
+  .menu.active { left: 0; }
+  .menu-icon { display: block; z-index: 1001; }
+  .service-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .category-heading h2 { white-space: normal; }
+  .modal-body { padding: 24px 22px 28px; }
+  .modal-header { padding: 26px 22px 22px; }
+}
+</style>
+<link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+
+<!--==Navigation==-->
+<div class="navbar">
+  <nav class="navigation container">
+    <label class="menu-icon" id="menuToggle"><i class="fa-solid fa-bars"></i></label>
+    <a class="logo" href="index.html"><img src="images/logo.png" alt="Mediclinic Logo"></a>
+    <ul class="menu" id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html" style="color: var(--mid); font-weight: 600;">Services</a></li>
+      <li><a href="health-tips.html">Health Tips</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+    <a class="nav-appointment-btn" href="appointment.html">Book Appointment</a>
+  </nav>
+</div>
+
+<!--==Hero==-->
+<section id="services-hero">
+  <div class="container">
+    <h1>Comprehensive Medical Services</h1>
+    <p>We provide up-to-date, evidence-based management for a wide range of acute and chronic medical conditions. Expert care tailored to your specific health needs.</p>
+  </div>
+</section>
+
+<!--==Service Categories==-->
+<section id="service-categories">
+  <div class="container">
+
+    <!-- Category 1: Metabolic & Cardiovascular -->
+    <div class="category-block animate-up delay-1">
+      <div class="category-heading">
+        <h2><i class="fa-solid fa-heart-pulse"></i> Metabolic & Cardiovascular</h2>
+        <div class="cat-line"></div>
+      </div>
+      <div class="service-grid">
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-droplet"></i></div>
+          <h3>Diabetes Management</h3>
+          <p>Comprehensive care for Type 1 and Type 2 diabetes, including blood sugar monitoring, medication management, and lifestyle counseling.</p>
+          <button class="read-more-link" data-modal="diabetes">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="diabetes-management.html" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-gauge-high"></i></div>
+          <h3>Hypertension (B.P)</h3>
+          <p>Accurate blood pressure assessment, personalized treatment plans, and ongoing monitoring to prevent cardiovascular complications.</p>
+          <button class="read-more-link" data-modal="hypertension">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="hypertension.html" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-heart"></i></div>
+          <h3>Heart Diseases</h3>
+          <p>Evaluation and management of various cardiac conditions, including risk assessment and coordination of specialized cardiac care.</p>
+          <button class="read-more-link" data-modal="heart">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="heart.html" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Category 2: Gastrointestinal & Liver -->
+    <div class="category-block animate-up delay-2">
+      <div class="category-heading">
+        <h2><i class="fa-solid fa-stomach"></i> Gastrointestinal & Liver</h2>
+        <div class="cat-line"></div>
+      </div>
+      <div class="service-grid">
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-pills"></i></div>
+          <h3>Gastrointestinal Diseases</h3>
+          <p>Diagnosis and treatment for a broad spectrum of digestive issues, from acid reflux to chronic abdominal pain.</p>
+          <button class="read-more-link" data-modal="gastro">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="appointment.html?service=Gastrointestinal%20Diseases" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+          <h3>Functional Dyspepsia</h3>
+          <p>Expert management of persistent indigestion and upper abdominal discomfort without obvious structural causes.</p>
+          <button class="read-more-link" data-modal="dyspepsia">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="appointment.html?service=Functional%20Dyspepsia" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-wave-square"></i></div>
+          <h3>IBS (Irritable Bowel Syndrome)</h3>
+          <p>Tailored dietary guidance and medical management to control IBS symptoms and improve quality of life.</p>
+          <button class="read-more-link" data-modal="ibs">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="appointment.html?service=IBS%20%28Irritable%20Bowel%20Syndrome%29" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-virus"></i></div>
+          <h3>Hepatitis</h3>
+          <p>Screening, monitoring, and management of viral hepatitis, focusing on liver health preservation.</p>
+          <button class="read-more-link" data-modal="hepatitis">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="appointment.html?service=Hepatitis" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-liver"></i></div>
+          <h3>Liver Diseases</h3>
+          <p>Comprehensive evaluation and treatment plans for various acute and chronic liver conditions.</p>
+          <button class="read-more-link" data-modal="liver">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="appointment.html?service=Liver%20Diseases" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Category 3: Infectious & Respiratory -->
+    <div class="category-block animate-up delay-3">
+      <div class="category-heading">
+        <h2><i class="fa-solid fa-lungs"></i> Infectious & Respiratory</h2>
+        <div class="cat-line"></div>
+      </div>
+      <div class="service-grid">
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-mosquito"></i></div>
+          <h3>Dengue Fever</h3>
+          <p>Prompt diagnosis, platelet monitoring, and supportive care management for dengue patients.</p>
+          <button class="read-more-link" data-modal="dengue">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="appointment.html?service=Dengue%20Fever" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-bacteria"></i></div>
+          <h3>Typhoid Fever</h3>
+          <p>Accurate diagnosis and appropriate antibiotic therapy for enteric fever, with follow-up care.</p>
+          <button class="read-more-link" data-modal="typhoid">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="appointment.html?service=Typhoid%20Fever" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-lungs-virus"></i></div>
+          <h3>Lung Diseases</h3>
+          <p>Management of asthma, COPD, and other respiratory conditions to help you breathe easier.</p>
+          <button class="read-more-link" data-modal="lung">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="appointment.html?service=Lung%20Diseases" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-shield-virus"></i></div>
+          <h3>Tuberculosis (T.B)</h3>
+          <p>Complete TB screening, standard treatment regimens (DOTS), and long-term recovery monitoring.</p>
+          <button class="read-more-link" data-modal="tb">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="appointment.html?service=Tuberculosis%20%28T.B%29" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Category 4: Neurological & Blood -->
+    <div class="category-block animate-up delay-4">
+      <div class="category-heading">
+        <h2><i class="fa-solid fa-brain"></i> Neurological & Blood</h2>
+        <div class="cat-line"></div>
+      </div>
+      <div class="service-grid">
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Epilepsy</h3>
+          <p>Diagnosis and medical management of seizure disorders, focusing on medication optimization and safety.</p>
+          <button class="read-more-link" data-modal="epilepsy">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="appointment.html?service=Epilepsy" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-user-injured"></i></div>
+          <h3>Stroke</h3>
+          <p>Post-stroke recovery management, secondary prevention, and risk factor modification.</p>
+          <button class="read-more-link" data-modal="stroke">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="appointment.html?service=Stroke" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon"><i class="fa-solid fa-tint"></i></div>
+          <h3>Blood Disorders & Anemia</h3>
+          <p>Investigation and treatment of low blood counts, iron deficiency, and other hematological issues.</p>
+          <button class="read-more-link" data-modal="anemia">Read More <i class="fa-solid fa-arrow-right"></i></button>
+          <a href="appointment.html?service=Blood%20Disorders%20%26%20Anemia" class="btn-book-service">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!--==CTA Strip==-->
+<section class="cta-strip">
+  <div class="container">
+    <h2>Need expert medical advice?</h2>
+    <p>Dr. Farooq provides thorough consultations to accurately diagnose and treat your condition.</p>
+    <a href="appointment.html" class="btn-primary">Book an Appointment <i class="fa-solid fa-calendar-check"></i></a>
+  </div>
+</section>
+
+<!--==Footer==-->
+<footer>
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="index.html"><img src="images/logo.png" alt="Mediclinic Logo"></a>
+      <p>Providing compassionate, expert medical care to families in our community and beyond.</p>
+      <div class="footer-social">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="health-tips.html">Health Tips</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="appointment.html">Appointments</a></li>
+        <li><a href="patient-portal.html">Patient Portal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul class="footer-contact">
+        <li><i class="fa-solid fa-location-dot"></i> DHQ Hospital, Hafizabad, Pakistan</li>
+        <li><i class="fa-solid fa-phone"></i> <a href="tel:+923305516653" style="color: var(--light-mid);">+92 330 5516653</a></li>
+        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@mediclinic.com" style="color: var(--light-mid);">info@mediclinic.com</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Clinic Hours</h4>
+      <ul>
+        <li style="color: var(--light-mid); font-size: 0.9rem; margin-bottom: 8px;">Mon – Thu, Sat: 2:00 PM – 7:00 PM</li>
+        <li style="color: var(--light-mid); font-size: 0.9rem; margin-bottom: 8px;">Sunday: 10:00 AM – 6:00 PM</li>
+        <li style="color: var(--light-mid); font-size: 0.9rem;">Friday: Closed</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&#169; 2026 Mediclinic. All rights reserved.</span>
+    <span>Designed with care.</span>
+  </div>
+</footer>
+
+<!--==Floating WhatsApp==-->
+<a class="float-wa" href="https://wa.me/923305516653" target="_blank" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!--==Modal Overlay==-->
+<div class="modal-overlay" id="serviceModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <button class="modal-close" id="modalClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-icon" id="modalIcon"><i class="fa-solid fa-droplet"></i></div>
+      <h3 id="modalTitle">Service Title</h3>
+      <p id="modalSubtitle">Category</p>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Content injected by JS -->
+    </div>
+  </div>
+</div>
+
+<script>
+  /* === MOBILE MENU === */
+  document.getElementById('menuToggle').addEventListener('click', function () {
+    document.getElementById('menu').classList.toggle('active');
+  });
+
+  /* === SERVICE MODAL DATA === */
+  const serviceData = {
+    diabetes: {
+      title: 'Diabetes Management',
+      subtitle: 'Metabolic & Cardiovascular',
+      icon: 'fa-droplet',
+      page: 'diabetes-management.html',
+      about: 'Diabetes is a chronic condition affecting how your body processes blood sugar. Uncontrolled diabetes can damage the heart, kidneys, eyes, and nerves over time. Our clinic provides complete, personalized diabetes care for both Type 1 and Type 2 patients.',
+      symptoms: ['Frequent urination and excessive thirst', 'Unexplained weight loss or gain', 'Fatigue and blurred vision', 'Slow-healing wounds and recurrent infections', 'Tingling or numbness in hands and feet'],
+      approach: ['Detailed HbA1c and blood glucose evaluation', 'Personalized medication and insulin plans', 'Continuous monitoring and dose adjustment', 'Diet and lifestyle counselling', 'Complication screening (kidney, eye, nerve, heart)'],
+      note: 'Early control of blood sugar dramatically reduces the risk of long-term complications. Regular follow-up is essential.'
+    },
+    hypertension: {
+      title: 'Hypertension (High Blood Pressure)',
+      subtitle: 'Metabolic & Cardiovascular',
+      icon: 'fa-gauge-high',
+      page: 'hypertension.html',
+      about: 'Hypertension is often called the "silent killer" because it usually has no symptoms while quietly damaging the heart, brain, kidneys, and blood vessels. Our clinic focuses on accurate diagnosis, lifestyle modification, and medication optimization.',
+      symptoms: ['Often no symptoms at all', 'Headaches, especially in the morning', 'Shortness of breath or dizziness', 'Nosebleeds in severe cases', 'Chest discomfort or palpitations'],
+      approach: ['Accurate repeated BP measurement and staging', 'Assessment of cardiovascular and kidney risk', 'Personalized medication therapy', 'Dietary sodium reduction and weight management', 'Home BP monitoring guidance and regular follow-up'],
+      note: 'Target blood pressure is usually below 130/80 mmHg for most adults, but individualized targets are set based on your health profile.'
+    },
+    heart: {
+      title: 'Heart Diseases',
+      subtitle: 'Metabolic & Cardiovascular',
+      icon: 'fa-heart',
+      page: 'heart.html',
+      about: 'We evaluate and manage a range of cardiac conditions, including coronary artery disease, heart failure, arrhythmias, and valvular disorders. Our approach emphasizes risk assessment, early detection, and coordinated specialist care when needed.',
+      symptoms: ['Chest pain or pressure', 'Shortness of breath on exertion', 'Palpitations or irregular heartbeat', 'Swelling of the legs and ankles', 'Unexplained fatigue or fainting'],
+      approach: ['Detailed cardiovascular history and examination', 'ECG and baseline cardiac testing', 'Risk factor assessment and management', 'Medication therapy for symptom control and prevention', 'Referral and coordination for advanced cardiac care'],
+      note: 'Seek urgent medical attention for sudden chest pain, severe breathlessness, or fainting.'
+    },
+    gastro: {
+      title: 'Gastrointestinal Diseases',
+      subtitle: 'Gastrointestinal & Liver',
+      icon: 'fa-pills',
+      page: 'gastrointestinal-diseases.html',
+      about: 'We diagnose and treat a wide range of digestive disorders, including acid reflux (GERD), gastritis, peptic ulcers, chronic abdominal pain, constipation, and diarrhoea. Our goal is to identify the cause and provide lasting relief.',
+      symptoms: ['Heartburn and acid regurgitation', 'Abdominal pain or bloating', 'Nausea, vomiting, or early fullness', 'Change in bowel habits', 'Blood in stool or black stools'],
+      approach: ['Detailed dietary and symptom history', 'Targeted laboratory testing', 'Appropriate medication therapy', 'Dietary and lifestyle counselling', 'Referral for endoscopy when indicated'],
+      note: 'Persistent or alarming symptoms such as weight loss, bleeding, or difficulty swallowing require prompt evaluation.'
+    },
+    dyspepsia: {
+      title: 'Functional Dyspepsia',
+      subtitle: 'Gastrointestinal & Liver',
+      icon: 'fa-circle-exclamation',
+      page: '',
+      about: 'Functional dyspepsia is persistent upper abdominal discomfort or fullness without an obvious structural cause. It is common and manageable with a structured approach combining lifestyle changes and medication.',
+      symptoms: ['Post-meal fullness or bloating', 'Early satiety (feeling full quickly)', 'Upper abdominal pain or burning', 'Nausea or excessive belching', 'Symptoms worsened by stress'],
+      approach: ['Rule out structural causes and H. pylori infection', 'Dietary trigger identification', 'Acid-suppression or prokinetic medication', 'Stress and lifestyle management', 'Regular symptom monitoring and review'],
+      note: 'Symptoms often improve significantly with dietary adjustments and stress management alongside medical therapy.'
+    },
+    ibs: {
+      title: 'Irritable Bowel Syndrome (IBS)',
+      subtitle: 'Gastrointestinal & Liver',
+      icon: 'fa-wave-square',
+      page: '',
+      about: 'IBS is a common functional bowel disorder causing recurrent abdominal pain and altered bowel habits. While it does not cause structural damage, it can significantly impact quality of life. We offer tailored dietary and medical strategies to control symptoms.',
+      symptoms: ['Recurrent abdominal pain or cramps', 'Bloating and excessive gas', 'Diarrhoea, constipation, or alternating pattern', 'Relief after passing stool', 'Symptoms linked to stress or certain foods'],
+      approach: ['Symptom-based diagnosis using Rome criteria', 'Low-FODMAP and trigger elimination guidance', 'Antispasmodic and bowel-regulating medication', 'Gut-brain axis and stress management', 'Regular review and dietary fine-tuning'],
+      note: 'IBS is managed, not cured — but most patients achieve good symptom control with a personalized plan.'
+    },
+    hepatitis: {
+      title: 'Hepatitis',
+      subtitle: 'Gastrointestinal & Liver',
+      icon: 'fa-virus',
+      page: '',
+      about: 'Hepatitis refers to inflammation of the liver, most commonly caused by viral infections (Hepatitis A, B, C, and E). We provide screening, monitoring, and management aimed at preserving liver health and preventing progression.',
+      symptoms: ['Jaundice (yellowing of skin and eyes)', 'Fatigue and low-grade fever', 'Dark urine and pale stools', 'Nausea and loss of appetite', 'Right upper abdominal discomfort'],
+      approach: ['Viral serology and liver function testing', 'Assessment of liver damage and viral load', 'Antiviral therapy where indicated', 'Lifestyle and alcohol counselling', 'Regular monitoring of liver health'],
+      note: 'Vaccination against Hepatitis A and B is the most effective prevention. Early treatment of Hepatitis B and C prevents cirrhosis.'
+    },
+    liver: {
+      title: 'Liver Diseases',
+      subtitle: 'Gastrointestinal & Liver',
+      icon: 'fa-liver',
+      page: '',
+      about: 'We evaluate and treat acute and chronic liver conditions including fatty liver disease, cirrhosis, drug-induced liver injury, and autoimmune liver disorders. Our focus is on slowing progression and preserving liver function.',
+      symptoms: ['Fatigue and weakness', 'Jaundice or dark urine', 'Abdominal swelling or fluid retention', 'Easy bruising or bleeding', 'Loss of appetite and weight loss'],
+      approach: ['Liver function tests and imaging', 'Identification and management of underlying cause', 'Medication and lifestyle modifications', 'Monitoring for complications of cirrhosis', 'Specialist referral when advanced care is needed'],
+      note: 'Fatty liver disease is often reversible with weight loss, dietary changes, and regular exercise.'
+    },
+    dengue: {
+      title: 'Dengue Fever',
+      subtitle: 'Infectious & Respiratory',
+      icon: 'fa-mosquito',
+      page: '',
+      about: 'Dengue is a mosquito-borne viral infection that can range from mild fever to severe, life-threatening illness. We provide prompt diagnosis, careful platelet monitoring, and supportive care to guide safe recovery.',
+      symptoms: ['High fever (often 102–104°F)', 'Severe headache and pain behind the eyes', 'Muscle and joint pain', 'Skin rash and nausea', 'Bleeding gums or easy bruising (warning signs)'],
+      approach: ['Rapid diagnostic testing (NS1, IgM)', 'Daily platelet and haematocrit monitoring', 'Fluid and electrolyte management', 'Strict warning-sign surveillance', 'Hospital referral for severe cases'],
+      note: 'Warning signs such as persistent vomiting, bleeding, or abdominal pain require immediate hospital evaluation.'
+    },
+    typhoid: {
+      title: 'Typhoid Fever',
+      subtitle: 'Infectious & Respiratory',
+      icon: 'fa-bacteria',
+      page: '',
+      about: 'Typhoid is a bacterial infection caused by Salmonella typhi, usually spread through contaminated food or water. It requires accurate diagnosis and appropriate antibiotic therapy, with careful follow-up to prevent complications.',
+      symptoms: ['Step-ladder fever rising over days', 'Headache and general weakness', 'Abdominal pain and constipation', 'Loss of appetite', 'Rose-coloured spots (in some cases)'],
+      approach: ['Blood culture and serology testing', 'Appropriate antibiotic therapy based on sensitivity', 'Hydration and nutrition support', 'Monitoring for complications', 'Follow-up to confirm clearance'],
+      note: 'Good sanitation and safe drinking water are essential preventive measures. Vaccination is also available.'
+    },
+    lung: {
+      title: 'Lung Diseases',
+      subtitle: 'Infectious & Respiratory',
+      icon: 'fa-lungs-virus',
+      page: '',
+      about: 'We manage common respiratory conditions including asthma, COPD, chronic bronchitis, and recurrent chest infections. Our goal is to improve breathing, reduce flare-ups, and maintain lung function.',
+      symptoms: ['Chronic cough, with or without sputum', 'Wheezing and chest tightness', 'Shortness of breath on exertion', 'Recurrent chest infections', 'Difficulty sleeping due to breathlessness'],
+      approach: ['Detailed respiratory history and examination', 'Spirometry and baseline lung function testing', 'Inhaler therapy and technique education', 'Smoking cessation and trigger avoidance', 'Action plan for flare-ups and regular review'],
+      note: 'Correct inhaler technique is as important as the medication itself — we teach and review it at every visit.'
+    },
+    tb: {
+      title: 'Tuberculosis (T.B)',
+      subtitle: 'Infectious & Respiratory',
+      icon: 'fa-shield-virus',
+      page: '',
+      about: 'Tuberculosis is a bacterial infection that most commonly affects the lungs. With complete and correct treatment, TB is curable. We provide screening, standard DOTS-based treatment, and long-term recovery monitoring.',
+      symptoms: ['Cough lasting more than 2–3 weeks', 'Coughing blood or blood-stained sputum', 'Low-grade evening fever and night sweats', 'Unexplained weight loss', 'Loss of appetite and fatigue'],
+      approach: ['Sputum testing and chest imaging', 'Standard DOTS treatment regimen', 'Regular adherence and side-effect monitoring', 'Contact tracing and family screening', 'Complete recovery confirmation'],
+      note: 'Completing the full course of TB treatment is essential — stopping early can lead to drug-resistant TB.'
+    },
+    epilepsy: {
+      title: 'Epilepsy',
+      subtitle: 'Neurological & Blood',
+      icon: 'fa-bolt',
+      page: '',
+      about: 'Epilepsy is a neurological disorder characterized by recurrent unprovoked seizures. With the right medication and monitoring, most patients achieve good seizure control and live normal lives.',
+      symptoms: ['Recurrent seizures or convulsions', 'Brief loss of awareness or staring spells', 'Unexplained falls or jerking movements', 'Confusion after an episode', 'Warning aura before a seizure'],
+      approach: ['Detailed seizure history and classification', 'EEG and neuroimaging referral as needed', 'Anti-epileptic medication optimization', 'Safety and lifestyle guidance', 'Regular review and dose adjustment'],
+      note: 'Never stop anti-epileptic medication abruptly — always consult before making any change.'
+    },
+    stroke: {
+      title: 'Stroke',
+      subtitle: 'Neurological & Blood',
+      icon: 'fa-user-injured',
+      page: '',
+      about: 'A stroke occurs when blood supply to the brain is interrupted, causing sudden neurological deficits. We focus on post-stroke recovery, secondary prevention, and aggressive risk factor modification to prevent recurrence.',
+      symptoms: ['Sudden weakness or numbness on one side', 'Facial drooping or slurred speech', 'Sudden vision loss or double vision', 'Severe sudden headache', 'Loss of balance or coordination'],
+      approach: ['Post-stroke clinical assessment', 'Secondary prevention medication (antiplatelet, statin, BP control)', 'Risk factor management (diabetes, cholesterol, smoking)', 'Rehabilitation coordination', 'Regular follow-up and monitoring'],
+      note: 'Remember FAST — Face drooping, Arm weakness, Speech difficulty, Time to call emergency services.'
+    },
+    anemia: {
+      title: 'Blood Disorders & Anemia',
+      subtitle: 'Neurological & Blood',
+      icon: 'fa-tint',
+      page: '',
+      about: 'Anemia and other blood disorders can cause fatigue, weakness, and reduced quality of life. We investigate the underlying cause and provide targeted treatment, from iron deficiency to more complex haematological conditions.',
+      symptoms: ['Persistent fatigue and weakness', 'Pale skin, lips, or nail beds', 'Shortness of breath on exertion', 'Dizziness or light-headedness', 'Cold hands and feet or brittle nails'],
+      approach: ['Complete blood count and iron studies', 'Identification of underlying cause', 'Iron supplementation or targeted therapy', 'Dietary counselling for iron-rich foods', 'Monitoring of response and follow-up'],
+      note: 'Anemia is often a sign of an underlying issue — proper investigation is essential, not just iron tablets.'
+    }
+  };
+
+  /* === MODAL LOGIC === */
+  const modal = document.getElementById('serviceModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalSubtitle = document.getElementById('modalSubtitle');
+  const modalIcon = document.getElementById('modalIcon');
+  const modalBody = document.getElementById('modalBody');
+  const modalClose = document.getElementById('modalClose');
+
+  document.querySelectorAll('.read-more-link').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const key = this.getAttribute('data-modal');
+      const data = serviceData[key];
+      if (!data) return;
+
+      modalTitle.textContent = data.title;
+      modalSubtitle.textContent = data.subtitle;
+      modalIcon.innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+
+      const symptomsList = data.symptoms.map(s => `<li>${s}</li>`).join('');
+      const approachList = data.approach.map(s => `<li>${s}</li>`).join('');
+
+      modalBody.innerHTML = `
+        <h4><i class="fa-solid fa-circle-info"></i> About This Condition</h4>
+        <p>${data.about}</p>
+        <h4><i class="fa-solid fa-notes-medical"></i> Common Symptoms</h4>
+        <ul>${symptomsList}</ul>
+        <h4><i class="fa-solid fa-stethoscope"></i> How We Treat It</h4>
+        <ul>${approachList}</ul>
+        <h4><i class="fa-solid fa-lightbulb"></i> Important Note</h4>
+        <p>${data.note}</p>
+        <a href="appointment.html?service=${encodeURIComponent(data.title)}" class="modal-cta">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        ${data.page ? `<a href="${data.page}" class="modal-cta" style="margin-left:10px;">Read Full Guide <i class="fa-solid fa-arrow-right"></i></a>` : ''}
+      `;
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+  });
+</script>
+</body>
+</html>
